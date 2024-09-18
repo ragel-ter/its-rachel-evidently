@@ -6,7 +6,7 @@ the backend is a simple slim framework app that serves crud endpoints for cv dat
 ### Run
 
 ```bash
-docker compose up --build
+sh run-dev.sh
 ```
 
 ### Api

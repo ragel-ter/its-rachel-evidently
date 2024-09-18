@@ -9,55 +9,50 @@ class App
 {
     private $config;
     private $app;
+    private $controllers;
 
-    public function __construct($config)
+    public function __construct($config, $controllers)
     {
         $this->config = $config;
         $this->app = AppFactory::create();
+        $this->controllers = $controllers;
     }
 
     public function run()
     {
         $this->app->get('/', [$this, 'defaultResponse']);
-        $this->app->get('/api/schema', [$this, 'apiSchema']);
-        $this->app->get('/api/ping', [$this, 'ping']);
+        $this->app->get('/v1/ping', [$this, 'ping']);
         $this->app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', [$this, 'notFound']);
-
+        $this->app->group('/v1/cv', function ($group) {
+            $group->any('/{routes:.+}', [$this->controllers['cv'], 'handleRequest']);
+        });
         $this->app->run();
     }
 
-    private function generateApiSchema(): array
+    private function generateApiLinks(): array
     {
-        $schema = [];
+        $links = [];
         $routes = $this->app->getRouteCollector()->getRoutes();
 
         foreach ($routes as $route) {
-            $schema[] = [
-                'path' => $route->getPattern(),
-                'method' => implode(', ', $route->getMethods()),
-            ];
+            $pattern = $route->getPattern();
+            // Exclude the catch-all route
+            if ($pattern !== '/{routes:.+}') {
+                $links[ltrim($pattern, '/')] = [
+                    'href' => $pattern,
+                    'methods' => $route->getMethods(),
+                ];
+            }
         }
 
-        return $schema;
+        return $links;
     }
 
-    public function apiSchema(Request $request, Response $response): Response {
-        $data = [
-            'data' => [
-                'type' => 'api_schema',
-                'attributes' => [
-                    'schema' => $this->generateApiSchema()
-                ]
-            ],
-            'meta' => [
-                'timestamp' => gmdate('Y-m-d\TH:i:s\Z')
-            ]
-        ];
-
-        $response->getBody()->write(json_encode($data));
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withStatus(200);
+    private function addHateoasLinks(array $data, string $self): array
+    {
+        $links = $this->generateApiLinks();
+        $data['links'] = ['self' => ['href' => $self]] + $links;
+        return $data;
     }
 
     public function defaultResponse(Request $request, Response $response): Response {
@@ -67,8 +62,7 @@ class App
                 'attributes' => [
                     'name' => $this->config['api_name'],
                     'version' => $this->config['api_version'],
-                    'status' => 'running',
-                    'schema' => $this->generateApiSchema()
+                    'status' => 'running'
                 ]
             ],
             'meta' => [
@@ -76,6 +70,8 @@ class App
             ]
         ];
         
+        $data = $this->addHateoasLinks($data, '/');
+
         $response->getBody()->write(json_encode($data));
         return $response
             ->withHeader('Content-Type', 'application/json')
@@ -94,6 +90,8 @@ class App
                 'timestamp' => gmdate('Y-m-d\TH:i:s\Z')
             ]
         ];
+
+        $data = $this->addHateoasLinks($data, '/api/ping');
 
         $response->getBody()->write(json_encode($data));
         return $response

@@ -8,6 +8,12 @@ services:
       - ./public:/var/www/public
       - ./config.php:/var/www/config.php
     working_dir: /var/www
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_PORT=${DB_PORT}
 
   web:
     image: nginx:alpine
