@@ -1,34 +1,38 @@
 # its-rachel-evidently
-### personal CV and portfolio web app
-monorepo containing frontend, backend and serverless functions 
+### Personal CV and Portfolio Web App
+A monorepo containing frontend, backend, and serverless functions 
 
-## why this repo exists
-### version control 
-keep record of my evolving personal CV and portfolio web app
-### show project lifecycle management
-demonstrate my approach to living projects eg. planning / design / architecture / phase management / delivery etc
-### show devops capabilities
-demonstrate my understanding of the use of ci / cd capabilities and infrastructure as code for managing project updates and releases
+## Why This Repo Exists
+### Version Control 
+To keep a record of my evolving personal CV and portfolio web app.
 
-## why a monorepo
-### single developer
-a monorepo means i can build a distributed solution that i can easily evolve into a more complex multi-service architecture without having to manage multiple repositories or deal with the complexities of coordinating multiple codebases
-### leaky microservices
-even the best micro-services architectures using containerisation can leak business logic and result in distributed monolith architectures; a single repository makes it easier to correct the bounded contexts when the need arises
-### reader-friendly
-the primary goal of this project is to showcase my approach to web development and delivery; a monorepo makes the distributed nature of a multi-service architecture more reader-friendly
+### Show Project Lifecycle Management
+To demonstrate my approach to living projects, e.g., planning, design, architecture, phase management, delivery, etc.
 
-## service README.md files
+### Show DevOps Capabilities
+To demonstrate my understanding of CI/CD capabilities and infrastructure as code for managing project updates and releases.
 
-### frontend
+## Why a Monorepo
+### Single Developer
+A monorepo allows me to build a distributed solution that I can easily evolve into a more complex multi-service architecture without having to manage multiple repositories or deal with the complexities of coordinating multiple codebases.
 
-### backend
+### Leaky Microservices
+Even the best microservices architectures using containerization can leak business logic and result in distributed monolith architectures. A single repository makes it easier to correct the bounded contexts when the need arises.
 
-### serverless
+### Reader-Friendly
+The primary goal of this project is to showcase my approach to web development and delivery. A monorepo makes the distributed nature of a multi-service architecture more reader-friendly.
 
-## forking this repository
+## Service README.md Files
 
-### terms of use and attribution
+### [Frontend](front.end/README.md)
+
+### [Backend](back.end/README.md)
+
+### [Serverless](serverless/README.md)
+
+## Forking This Repository
+
+### Terms of Use and Attribution
 
 This project is open source and available for anyone to use, modify, and distribute under the following terms:
 
