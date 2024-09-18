@@ -1,6 +1,8 @@
 # its-rachel-evidently
 ### Personal CV and Portfolio Web App
-A monorepo containing frontend, backend, and serverless functions 
+A monorepo containing frontend, backend, and serverless functions combining to build my personal CV and portfolio web app
+
+![its-rachel-evidently](https://github.com/user-attachments/assets/909f60b6-4ab7-49a9-bc17-d22b0220950f)
 
 ## Why This Repo Exists
 ### Version Control 
