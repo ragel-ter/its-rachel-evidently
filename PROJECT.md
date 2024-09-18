@@ -32,40 +32,42 @@
 
 #### phase 1
 ##### frontend
--[] set up sveltekit application
--[] configure docker container build
--[] configure build and deploy
--[] implement home page
--[] implement CV component
--[] test with mock data
--[] integrate with backend CV data endpoints
--[] test integration
--[] integrate with serverless CV download function
--[] test integration
--[] test deployment triggers
+- [] set up sveltekit application
+- [] configure docker container build
+- [] configure build and deploy
+- [] implement home page
+- [] implement CV component
+- [] test with mock data
+- [] integrate with backend CV data endpoints
+- [] test integration
+- [] integrate with serverless CV download function
+- [] test integration
+- [] test deployment triggers
 
 ##### backend
--[] set up php slim application
--[] configure docker container build
--[] configure build and deploy
--[] implement backend endpoints for CV data CRUD
--[] black box api test
--[] test deployment triggers
+- [] set up php slim application
+- [] configure docker container build
+- [] configure build and deploy
+- [] configure db connections
+- [] configure db management
+- [] implement backend endpoints for CV data CRUD
+- [] black box api test
+- [] test deployment triggers
 
 ##### serverless functions
--[] create lambda config
--[] create api gateway config
--[] create PDF download function
--[] configure function container build
--[] configure build and deploy
--[] black box test api test
--[] test deployment triggers
+- [] create lambda config
+- [] create api gateway config
+- [] create PDF download function
+- [] configure function container build
+- [] configure build and deploy
+- [] black box test api test
+- [] test deployment triggers
 
 ##### e2e integration test
--[] test accessing site
-    -[] does the data load as expected
--[] test CV download
-    -[] does clicking the CV download button cause the CV to download
+- [] test accessing site
+    - [] does the data load as expected
+- [] test CV download
+    - [] does clicking the CV download button cause the CV to download
 
 #### phase 2
 
